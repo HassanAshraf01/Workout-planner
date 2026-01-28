@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import "./App.css";
 
 function App() {
@@ -6,7 +7,7 @@ function App() {
   const [days, setDays] = useState("");
   const [plan, setPlan] = useState([]);
 
-  const workouts={
+  const workouts = {
     fat: [
       "Jumping Jacks",
       "Burpees",
@@ -25,7 +26,7 @@ function App() {
     ],
   };
 
-   const generatePlan = () => {
+  const generatePlan = () => {
     if (!goal || !days) {
       alert("Please select goal and days");
       return;
@@ -37,14 +38,36 @@ function App() {
     }
     setPlan(result);
   };
+
   return (
-    <div className="container">
+    <motion.div
+      className="container"
+      style={{ minHeight: "100vh" }}
+      initial={{ background: "linear-gradient(135deg, #0f2027, #203a43, #2c5364)" }}
+      animate={{
+        background: [
+          "linear-gradient(135deg, #0f2027, #203a43, #2c5364)",
+          "linear-gradient(135deg, #ff416c, #cc2103, #1e3c72)",
+          "linear-gradient(135deg, #0f2027, #203a43, #2c5364)",
+        ]
+      }}
+      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+    >
       <h1>🏋️ Workout Planner</h1>
+
+      {/* Goal Badge */}
       {goal && (
-  <div className={`goal-badge ${goal}`}>
-    {goal === "fat" ? "🔥 Fat Loss Plan" : "💪 Muscle Gain Plan"}
-  </div>
-)}
+        <motion.div
+          className={`goal-badge ${goal}`}
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          {goal === "fat" ? "🔥 Fat Loss Plan" : "💪 Muscle Gain Plan"}
+        </motion.div>
+      )}
+
+      {/* Form */}
       <div className="form">
         <select onChange={(e) => setGoal(e.target.value)}>
           <option value="">Select Goal</option>
@@ -61,30 +84,39 @@ function App() {
 
         <button onClick={generatePlan}>Generate</button>
       </div>
-       {plan.length > 0 && (
-  <div className="plan-section">
-    <h2>✅ Your Personalized Weekly Workout Plan</h2>
 
-    <div className="plan">
-      {plan.map((day, index) => (
-        <div className="day-card" key={index}>
-          <div className="day-header">
-            Day {index + 1}
-          </div>
-
-          <ul className="exercise-list">
-            {day.map((ex, i) => (
-              <li key={i}>💪 {ex}</li>
+      {/* Plan Section */}
+      {plan.length > 0 && (
+        <div className="plan-section">
+          <h2>✅ Your Personalized Weekly Workout Plan</h2>
+          <div className="plan">
+            {plan.map((day, index) => (
+              <motion.div
+                className="day-card"
+                key={index}
+                initial={{ y: 30, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
+              >
+                <div className="day-header">Day {index + 1}</div>
+                <ul className="exercise-list">
+                  {day.map((ex, i) => (
+                    <motion.li
+                      key={i}
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ delay: 0.2 + i * 0.1 }}
+                    >
+                      💪 {ex}
+                    </motion.li>
+                  ))}
+                </ul>
+              </motion.div>
             ))}
-          </ul>
+          </div>
         </div>
-      ))}
-    </div>
-  </div>
-)}
-
-
-    </div>
+      )}
+    </motion.div>
   );
 }
 
