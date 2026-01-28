@@ -1,0 +1,149 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background:  linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+}
+
+.container {
+   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;       /* horizontal center */
+}
+ h1{
+  color: white;
+  margin-bottom: 20px;
+}
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 25px;
+  justify-content: center;
+}
+select, button{
+  padding: 10px 14px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+button {
+  cursor: pointer;
+  padding: 10px 16px;
+  font-size: 16px;
+  background-color: #1e90ff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #187bcd;
+}
+
+select {
+  padding: 10px;
+  font-size: 16px;
+}
+.plan-section {
+  width: 100%;
+  max-width: 800px;
+  text-align: center;
+  animation: fadeIn 0.6s ease-in;
+}
+
+.plan-section h2 {
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.day-card {
+  background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05));
+  border-radius: 16px;
+  padding: 16px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  animation: slideUp 0.5s ease forwards;
+}
+
+.day-header {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(18, 168, 191, 0.2);
+}
+
+.exercise-list {
+  list-style: none;
+  padding: 0;
+}
+
+.exercise-list li {
+  margin: 8px 0;
+  font-size: 15px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.goal-badge {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.goal-badge.fat {
+  background: rgba(255, 99, 71, 0.25);
+  color: #ffcccb;
+}
+
+.goal-badge.muscle {
+  background: rgba(30, 144, 255, 0.25);
+  color: #add8ff;
+}
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .form {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  select,
+  button {
+    width: 100%;
+  }
+
+  .plan {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
