@@ -26,7 +26,7 @@ Designed to be **responsive**, **mobile-friendly**, and visually appealing with 
 
 ## Live Demo
 
-[View Live App on Vercel](https://YOUR_VERCEL_URL)  
+[View Live App on Vercel](https://smart-workout-planner-one.vercel.app/)  
 
 ---
 
